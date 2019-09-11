@@ -6,9 +6,15 @@ layout: default
 	<section class="sidebar sticky">
 		<ul>
 			{% assign sub_navigation = content | extract_element: 'h2' %}
+			{% if page.type == "Kit" %}
+			<li><a href="#kit-contents">Kit Contents</a></li>
+			{% endif %}
 			{% for item in sub_navigation %}
 				<li><a href="#{{ item.id }}">{{ item.text }}</a></li>
 			{% endfor %}
+			{% if page.type == "Kit" %}
+			<li><a href="#reources">Resources</a></li>
+			{% endif %}			
 		</ul>
 	</section>
 	<section class="tutorial-content">
@@ -27,14 +33,47 @@ layout: default
 				</div>
 			{% endif %}
 		{% endif %}
+
+		{% if page.type == "Kit" %}
+
+			<h2 id="kit-contents">Kit contents</h2>
+
+			{% if page.kit %}
+				{% assign kit_file_name = "_kits/" | append: page.kit | append: ".md" %}
+				{% assign kit = site.kits | where: "path", kit_file_name | first %}
+				<p>{{ kit.title }}</p>
+				{% include kit-detail.html listings=kit.items %}
+			{% else %}
+				<p>This kit is empty</p>
+			{% endif %}
+
+		{% endif %}
 		
 		<div class="tutorial-main">
 			{{ content }}
 		</div>
-		<div class="tutorial-share">
+
+
+		{% if page.type == "Kit" %}
+					{% if page.resources %}
+					<h2 id="resources">Resources</h2>
+				<div class="resources">
+					<ul>
+						{% for resource in page.resources %}
+							<li><a href="{{ resource.link }}">{{ resource.name }}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		{% endif %}
+
+
+		<div class="tutorial-share" style="display: none">
 			<a class="modalOpen no-smooth" href="#subscribe">{% include social-icon.html icon="Email" %} Subscribe</a>
 			<a class="modalOpen no-smooth" href="#share">{% include social-icon.html icon="Share" %} Share</a>
 		</div>
+
+
 	</section>
 </section>
 
@@ -43,17 +82,19 @@ layout: default
 	{% assign set = site.sets | where: "path", set_file_name | first %}
 	{% assign series_posts = site.posts | where: "set", page.set %}
 	<div class="tutorial-series">
-		<h3>{{ set.title }} - Series</h3>
+		<h3>{{ set.title }}</h3>
 		<p>{{ set.description }}</p>
 
 		{% include listings.html listings=series_posts numbered=true%}
 	</div>
 {% endif %}
+
+
 {% assign related_posts = site.related_posts %}
 {% assign related_posts_size = related_posts | size %}
 {% if related_posts_size > 0 %}
 	<div class="related">
-		<h3>Related tutorials</h3>
+		<h3>Related products</h3>
 
 		{% include listings.html listings=site.related_posts %}
 	</div>
@@ -82,7 +123,7 @@ layout: default
 		<a title="Close" class="close">&times;</a>
 		<form action="{{ site.newsletter_action }}" method="post">
 			<h2>Subscribe</h2>
-			<p>The latest tutorials sent straight to your inbox.</p>
+			<p>The latest kits sent straight to your inbox.</p>
 			<input type="email" name="EMAIL" placeholder="Email">
 			<input type="submit" value="Sign up">
 		</form>

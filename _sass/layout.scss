@@ -1,51 +1,96 @@
 .wrapper {
-	max-width: 900px;
-	margin: 0 auto;
-	padding: 0 30px;
-	position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 30px;
+  position: relative;
 }
 
 .logo {
-	img {
-		height: 30px;
-	}
+  img {
+    height: 30px;
+  }
 }
 
 .content {
-	background: #fff;
-	padding: 60px 0;
+  background: #fff;
+  padding: 60px 0;
 }
 
-dt, h2 {
-	a.header-link {
-		text-decoration: none;
-		color: #ccc;
-		opacity: 0;
-		transition: opacity ease .2s,color ease .2s;
-		vertical-align: bottom;
-		margin: 0 0 0 5px;
+dt,
+h2 {
+  a.header-link {
+    text-decoration: none;
+    color: #ccc;
+    opacity: 0;
+    transition: opacity ease 0.2s, color ease 0.2s;
+    vertical-align: bottom;
+    margin: 0 0 0 5px;
 
-		&:hover {
-			color: $link-color;
-		}
-	}
+    &:hover {
+      color: $link-color;
+    }
+  }
 
-	&:hover a {
-		opacity: 1;
-	}
+  &:hover a {
+    opacity: 1;
+  }
 }
 
 .video_wrapper {
-	position: relative;
-	padding-bottom: 59.5%;
-	padding-top: 25px;
-	height: 0;
+  position: relative;
+  padding-bottom: 59.5%;
+  padding-top: 25px;
+  height: 0;
 
-	iframe {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+table.kit-detail-table {
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid #ffffff;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.kit-detail-table td,
+table.kit-detail-table th {
+  border: 1px solid #ffffff;
+  padding: 3px 2px;
+}
+table.kit-detail-table tbody td {
+  font-size: 13px;
+}
+table.kit-detail-table tr:nth-child(even) {
+  background: #d0e4f5;
+}
+table.kit-detail-table thead {
+  background: #0b6fa4;
+  border-bottom: 5px solid #ffffff;
+}
+table.kit-detail-table thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  border-left: 2px solid #ffffff;
+}
+table.kit-detail-table thead th:first-child {
+  border-left: none;
+}
+
+table.kit-detail-table tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  background: #d0e4f5;
+  border-top: 3px solid #444444;
+}
+table.kit-detail-table tfoot td {
+  font-size: 14px;
 }
